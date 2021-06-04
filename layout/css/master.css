@@ -205,6 +205,9 @@ a {
     height:100%;
     margin:0 10px;
 }
+.product-details .product-image img{
+    height:100%;object-fit: contain;
+}
 
 .product-details .product-info .title{
     font-size:30px;

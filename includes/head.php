@@ -16,7 +16,6 @@ if(!isset($_SESSION["User"]))
 else
 {
     $user = unserialize($_SESSION['User']);
-    $_SESSION['myOrder'] = $myOrder = array();
 }
 
 ?>

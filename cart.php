@@ -47,6 +47,7 @@ if(isset($_POST['checkout'])) {
         <div class="order-history">
         <?php
             foreach($myOrder as $order) {
+                $order = unserialize($order);
         ?>
             <div class="item">
                 <div class="order-image">

@@ -13,7 +13,11 @@ foreach($all_drinks as $drink) {
 
 
 // * To Make an Order
-$myOrder = $_SESSION['myOrder'];
+if(isset($_SESSION['myOrder'])){
+    $myOrder = $_SESSION['myOrder'];
+}
+else
+$myOrder = array();
 
 // $Mochaa = new OrderItem("Mochaa","Skimmed Milk");
 // array_push($myOrder,$Mochaa);
@@ -31,8 +35,8 @@ if(isset($_GET['id'])) {
 if(isset($_GET['id']) && isset($_GET['add'])) {
     $orderID = $_GET['add'];
     $orde = new OrderItem($orderID,"Extra Foam");
+    $orde = serialize($orde);
     array_push($myOrder,$orde);
-
     $_SESSION['myOrder'] = $myOrder;
 }
 
