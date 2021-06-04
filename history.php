@@ -1,14 +1,8 @@
 <?php
 include("includes/head.php");
 
-if (isset($_POST['signin'])) {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    User::Login($username,$password);
-
-}
+$user_id = $user->getId();
+$orders = Order::viewOrdersSpecficUser($user_id);
 
 ?>
 
@@ -38,16 +32,29 @@ if (isset($_POST['signin'])) {
         </div>
     </div>
 
-    <div class="wrapper auth">
-        <div class="flex align-center justify-center">
-            <form method="POST" action="signin.php">
-                <label for="username">Username</label><br>
-                <input type="text" id="username" name="username"><br>
-                <label for="password">Password</label><br>
-                <input type="password" id="password" name="password">
-                <br>
-                <input type="submit" value="Login" class="xbutton" name="signin">
-            </form>
+    <div class="wrapper">
+        <div class="order-history">
+        <?php
+            foreach($orders as $order) {
+        ?>
+            <div class="item">
+                <div class="order-image">
+                    <img src="layout/images/latte.jpg" alt="">
+                </div>
+                <div>
+                    40 L.E<br>
+                    <?php echo $order['orderDate']; ?>
+                </div>
+                <?php
+                    if($order['status'] == 0) {
+                        $status = "Delivered";
+                    } else {
+                        $status = "Canceled";
+                    }
+                ?>
+                <div><?php echo $status; ?></div>
+            </div>
+        <?php } ?>
         </div>
     </div>
 </body>

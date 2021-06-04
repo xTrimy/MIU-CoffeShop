@@ -1,6 +1,6 @@
 <?php
 
-class Drink {
+class Beverage {
     private $name;
     private $price;
 
@@ -40,14 +40,14 @@ class Drink {
         return $this;
     }
 
-    public static function viewDrinks() {
-        $drinks = DB::query("SELECT * FROM drinks");
-        return $drinks;
+    public static function viewBeverages() {
+        $beverages = DB::query("SELECT * FROM beverages");
+        return $beverages;
     }
 
-    public static function viewSpecficDrink($id) {
-        $drink = DB::query("SELECT * FROM drinks WHERE id=:id",array(":id"=>$id))[0];
-        return $drink;
+    public static function viewSpecficBeverage($id) {
+        $beverage = DB::query("SELECT * FROM beverages WHERE id=:id",array(":id"=>$id))[0];
+        return $beverage;
     }
 }
 

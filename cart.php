@@ -1,14 +1,19 @@
 <?php
 include("includes/head.php");
 
-if (isset($_POST['signin'])) {
+$user_id = $user->getId();
+// $orders = Order::viewOrdersSpecficUser($user_id);
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+$myOrder = $_SESSION['myOrder'];
 
-    User::Login($username,$password);
+// ! Checkout Actions
 
+if(isset($_POST['checkout'])) {
+    $date = date('Y-m-d H:i:s');
+    $orderr = new Order($user->getId(),$date);
+    $orderr->createOrder($myOrder,$date);
 }
+
 
 ?>
 
@@ -38,16 +43,23 @@ if (isset($_POST['signin'])) {
         </div>
     </div>
 
-    <div class="wrapper auth">
-        <div class="flex align-center justify-center">
-            <form method="POST" action="signin.php">
-                <label for="username">Username</label><br>
-                <input type="text" id="username" name="username"><br>
-                <label for="password">Password</label><br>
-                <input type="password" id="password" name="password">
-                <br>
-                <input type="submit" value="Login" class="xbutton" name="signin">
-            </form>
+    <div class="wrapper">
+        <div class="order-history">
+        <?php
+            foreach($myOrder as $order) {
+        ?>
+            <div class="item">
+                <div class="order-image">
+                    <img src="layout/images/latte.jpg" alt="">
+                </div>
+                <div>
+                    40 L.E<br>
+                    <?php echo $order->getOrderID(); ?>
+                </div>
+
+                <div><?php echo '5'; ?></div>
+            </div>
+        <?php } ?>
         </div>
     </div>
 </body>

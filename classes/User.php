@@ -48,6 +48,8 @@ class User extends Person {
                 $user = new User($userData['user_id'],$userData['firstName'],$userData['lastName'],$userData['email'],$userData['phoneNumber'],$userData['password'],$userData['ordersCount'],$userData['location']);
 
                 $_SESSION["User"] = serialize($user);
+
+                header("Location: index.php");
             } 
             else 
             {
@@ -73,6 +75,8 @@ class User extends Person {
                 ":ordersCount" => $ordersCount,
                 ":location" => $location)
         );
+
+        echo '<script>alert("Account Cretaed")</script>';
     }
 
     /**
